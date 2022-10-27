@@ -28,9 +28,6 @@ function init() {
       voiceSelect.appendChild(option);
     }
   }
-  function wasteTime(x) {
-
-  }
 
   window.onload = populateVoiceList();
   
