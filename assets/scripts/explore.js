@@ -1,29 +1,6 @@
 // explore.js
 
 window.addEventListener('DOMContentLoaded', init);
-/*
-window.addEventListener('DOMContentLoaded', function(){
-  console.log("hello");
-  const synth = window.speechSynthesis;
-  var voiceSelect = document.getElementById('voice-select');
-  let voices = [];
-  voices = synth.getVoices();
-  
-    for (let i = 0; i < voices.length ; i++) {
-      console.log("hello");
-      const option = document.createElement('option');
-      option.textContent = `${voices[i].name} (${voices[i].lang})`;
-  
-      if (voices[i].default) {
-        option.textContent += ' — DEFAULT';
-      }
-  
-      option.setAttribute('data-lang', voices[i].lang);
-      option.setAttribute('data-name', voices[i].name);
-      voiceSelect.appendChild(option);
-    }
-});*/
-
 
 function init() {
   // TODO
@@ -51,10 +28,14 @@ function init() {
       voiceSelect.appendChild(option);
     }
   }
+  function wasteTime(x) {
+
+  }
+
   window.onload = populateVoiceList();
   
 //Loading voices on page load wasnt working correctly on my chrome browser but it worked on safari
-//The getVoices function was returning an empty array
+//The getVoices function was returning an array with no voices
   voiceSelect.addEventListener('click', (event) => {
     if (voiceSelect.length == 1){ 
       populateVoiceList();
@@ -75,12 +56,9 @@ function init() {
       }
     }
     synth.speak(utterThis);
-  
-    textArea.blur();
-    
-    
+
+    utterThis.onend = (event) => {
+      img[0].src = 'assets/images/smiling.png'; 
+    };
   });
-
-
-
 }
